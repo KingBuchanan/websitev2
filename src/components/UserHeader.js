@@ -12,7 +12,7 @@ const UserHeader = ({ user }) => {
       <Header>
         <Image src={user.basics.picture} />
         <div>
-          <h2>{user.basics.name}</h2>
+          <h2>{user.basics.name}<img src="https://piskel-imgstore-b.appspot.com/img/7c148d8a-b8c2-11e9-bf50-69f4a3300400.gif" alt="Hakeem the Wizard" /> </h2>
           <h4>
             <a
               href={`https://gitconnected.com/${user.basics.username}`}
@@ -24,14 +24,8 @@ const UserHeader = ({ user }) => {
           </h4>
           <p>{user.basics.label}</p>
           <p>Coding in {user.basics.region}</p>
-          <p>{user.basics.yearsOfExperience} years of experience as a developer</p>
+          <p>Lv.{user.basics.yearsOfExperience} Developer </p>
           <p>{user.basics.headline}</p>
-          <p>
-            Blog:{' '}
-            <a href={user.basics.blog} target="_blank" rel="noreferrer noopener">
-              {user.basics.blog}
-            </a>
-          </p>
         </div>
       </Header>
       <div>
