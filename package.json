@@ -4,16 +4,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@carbon/icons-react": "^10.10.2",
+    "@carbon/themes": "^10.11.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "carbon-components": "^10.11.2",
+    "carbon-components-react": "^7.11.3",
+    "node-sass": "^4.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.0"
   },
   "scripts": {
-	"predeploy": "npm run build",
-	"deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -36,5 +43,13 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0"
+  },
+  "guppy": {
+    "id": "6ca9b120-85b0-11ea-b487-49aa61d8a967",
+    "name": "my-app",
+    "type": "create-react-app",
+    "color": "#00bfb5",
+    "icon": null,
+    "createdAt": 1587680337203
   }
 }
