@@ -10,9 +10,10 @@ const Anime =({user})=>{
 return(
       <Layout user={user}>
     <div>
-        <SectionTitle>Anime</SectionTitle>
-        
+        <SectionTitle>Anime On My List</SectionTitle>   
     </div>
+    
     </Layout>
 );
 };
+export default Anime;
