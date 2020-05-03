@@ -137,8 +137,8 @@ handleError(error) {
          
          <StarRatingComponent 
     name={"String"} /* name of the radio input, it is required */
-    value={Math.round(d.node.meanScore/10)} /* number of selected icon (`0` - none, `1` - first) */
-    starCount={10} /* number of icons in rating, default `5` */
+    value={Math.round((d.node.meanScore/100)*5)} /* number of selected icon (`0` - none, `1` - first) */
+    starCount={5} /* number of icons in rating, default `5` */
     starColor={"#ffb400"} /* color of selected icons, default `#ffb400` */
     emptyStarColor={"#FFFFFF"} /* color of non-selected icons, default `#333` */
     editing={false} /* is component available for editing, default `true` */
