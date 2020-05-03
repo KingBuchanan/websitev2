@@ -1,0 +1,40 @@
+var query=
+{
+  User(id: 478182) {
+    favourites {
+      anime {
+        edges {
+          node {
+            title {
+              romaji
+              english
+              native
+              userPreferred
+            }
+            coverImage {
+              extraLarge
+              large
+              medium
+              color
+            }
+            description
+            season
+            genres
+            meanScore
+          }
+        }
+      }
+    }
+    statistics {
+      anime {
+        episodesWatched
+        count
+        genres {
+          genre
+          count
+          minutesWatched
+        }
+      }
+    }
+  }
+}

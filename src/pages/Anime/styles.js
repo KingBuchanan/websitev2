@@ -1,17 +1,22 @@
 import styled from 'styled-components'
 import { white } from '@carbon/colors'
 
-export const EducationItem = styled.li`
-  margin-top: 1rem;
-  padding-bottom: 1rem;
+export const AnimeItem = styled.li`
+  margin-top: .5rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid ${white};
 `
 
-export const Institution = styled.h4`
+export const AnimeName = styled.h4`
   font-weight: bold;
+  margin-left: 14.7rem;
 `
 
-export const Degree = styled.p`
+export const AnimeDescription = styled.p`
   font-weight: bold;
-  display: inline-block;
+  display:inline-block;
+  width:50%;
+  padding-left:5rem;
+  
 `
+
