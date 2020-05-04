@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import { Progress, Segment } from 'semantic-ui-react'
 import StarRatingComponent from 'react-star-rating-component';
 
+
 {/* {
     Object.keys(this.state.edges).map((key,i)=>(
       <p key={i}>
@@ -132,9 +133,9 @@ handleError(error) {
        <AnimeName>{d.node.title.native}</AnimeName>
        
        
-       <div className="Stars" margin-left="10px">
+       <div className="Stars" margin-left="15px">
          
-         
+         <h6>Rating</h6>
          <StarRatingComponent 
     name={"String"} /* name of the radio input, it is required */
     value={Math.round((d.node.meanScore/100)*5)} /* number of selected icon (`0` - none, `1` - first) */
@@ -143,6 +144,10 @@ handleError(error) {
     emptyStarColor={"#FFFFFF"} /* color of non-selected icons, default `#333` */
     editing={false} /* is component available for editing, default `true` */
 />
+</div>
+<div className="ProgressBar">
+  <h2>Completion/episodes Watched</h2>
+  <Progress percent={100} size="small" color="green"/>
 </div>
 </div>
      
@@ -157,8 +162,8 @@ handleError(error) {
       
           <Layout user={user}>
         <div>
-            <SectionTitle>My favourites</SectionTitle>   
-    <h1>Total Anime watched:{this.state.statistics.count}</h1>
+          
+            <SectionTitle>Total Anime watched: {this.state.statistics.count}</SectionTitle> 
    <div>
      
      {animeFavs}
