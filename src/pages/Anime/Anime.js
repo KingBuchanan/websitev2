@@ -6,14 +6,6 @@ import { Progress, Segment } from 'semantic-ui-react'
 import StarRatingComponent from 'react-star-rating-component';
 
 
-{/* {
-    Object.keys(this.state.edges).map((key,i)=>(
-      <p key={i}>
-      <span>Key Name: {key}</span>
-           <span>Value: {this.state.edges[key]}</span>
-      </p>
-    ))
-    } */}
 var query=
 `{
   User(id: 478182) {
@@ -21,6 +13,7 @@ var query=
       anime {
         edges {
           node {
+            episodes
             title {
               romaji
               english
@@ -146,8 +139,10 @@ handleError(error) {
 />
 </div>
 <div className="ProgressBar">
-  <h2>Completion/episodes Watched</h2>
-  <Progress percent={100} size="small" color="green"/>
+  <h5>Completion/episodes Watched:</h5>
+  <Progress percent={100} size="small" color="green" active >
+      {d.node.episodes}/{d.node.episodes}
+    </Progress>
 </div>
 </div>
      
