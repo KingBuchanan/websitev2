@@ -28,6 +28,7 @@
     "react-star-rating-component": "^1.4.1",
     "react-typist": "^2.0.5",
     "semantic-ui-react": "^0.88.2",
+    "string-strip-html": "^4.4.4",
     "styled-components": "^5.1.0"
   },
   "scripts": {

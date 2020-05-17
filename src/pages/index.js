@@ -24,13 +24,13 @@ const Pages = ({ user }) => {
         <Route path="/education">
           <Education user={user} />
         </Route>
-        <Route path="/websitev2/anime/favorites">
+        <Route path="/anime/favorites">
           <AnimeFave user={user} />
         </Route>
-        <Route path="/websitev2/anime/watching">
+        <Route path="/anime/watching">
           <AnimeCurrent user={user} />
         </Route>
-        <Route path="/websitev2/anime/completed">
+        <Route path="/anime/completed">
           <AnimeComplete user={user} />
         </Route>
       </Switch>

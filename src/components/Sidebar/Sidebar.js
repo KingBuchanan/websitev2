@@ -32,13 +32,13 @@ const Sidebar = () => {
           
         ))}
         <SideNavMenu title="Anime" >
-          <SideNavMenuItem element={Link} to={'anime/watching'} key={'Watching'} href="/watching">
+          <SideNavMenuItem element={Link} to={'/anime/watching'} key={'Watching'}>
             Watching
           </SideNavMenuItem>
-          <SideNavMenuItem element={Link} to={'anime/favorites'} key={'Favorites'}href="/favorites">
+          <SideNavMenuItem element={Link} to={'/anime/favorites'} key={'Favorites'}href="/favorites">
             Favorites
           </SideNavMenuItem>
-          <SideNavMenuItem element={Link} to={'anime/completed'} key={'Completed'}href="/completed">
+          <SideNavMenuItem element={Link} to={'/anime/completed'} key={'Completed'}href="/completed">
             Completed
           </SideNavMenuItem>
         </SideNavMenu>

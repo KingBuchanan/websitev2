@@ -142,7 +142,7 @@ class AnimeComplete extends React.Component {
 </div>
 
        
-       <AnimeDescription>{d.media.description}</AnimeDescription>
+       <AnimeDescription>{d.media.description.replace(/(<([^>]+)>)/ig,"")}</AnimeDescription>
        </div>
        </div>
         </AnimeItem>

@@ -4,6 +4,7 @@ import {AnimeItem,AnimeName,AnimeDescription} from  './styles';
 import Layout from '../../../components/Layout';
 import { Progress, } from 'semantic-ui-react'
 import StarRatingComponent from 'react-star-rating-component';
+import stripHtml from "string-strip-html";
 
 var query=
 `{
@@ -95,8 +96,10 @@ class AnimeCurrent extends React.Component {
 
    render(){
        const {user}=this.props;
+       
        const anime=this.state.mediaList;
        const AnimeList=anime.map((d)=><ul key={d.media.title.english} >
+         
         <AnimeItem>
         <div className="row">
         <div className="column">
@@ -105,7 +108,7 @@ class AnimeCurrent extends React.Component {
         <img src={d.media.coverImage.large} alt="Anime Cover Images"></img>
        </div>
       
-       <div className="column" className="Progress_rating" style={{paddingLeft:20}}>
+       <div className="column" className="Progress_rating" style={{paddingLeft:20, paddingTop:70}}>
         
          <h6>Rating</h6>
     <StarRatingComponent 
@@ -125,7 +128,7 @@ class AnimeCurrent extends React.Component {
 </div>
 
        
-       <AnimeDescription>{d.media.description}</AnimeDescription>
+      <stripHtml> <AnimeDescription><p>{d.media.description.replace(/(<([^>]+)>)/ig,"")}</p></AnimeDescription></stripHtml>
        </div>
        </div>
         </AnimeItem>
@@ -139,6 +142,9 @@ class AnimeCurrent extends React.Component {
        return(
            <Layout user={user}>
 <div>
+<SectionTitle>
+            Currently Watching:
+          </SectionTitle>
                {AnimeList}
                </div>
            </Layout>

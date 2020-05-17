@@ -4,7 +4,7 @@ import { white } from '@carbon/colors'
 export const AnimeItem = styled.li`
   margin-top: .5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid ${white};
+  border-bottom: 2px solid ${white};
 `
 
 export const AnimeName = styled.h4`

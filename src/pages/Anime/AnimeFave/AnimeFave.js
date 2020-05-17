@@ -140,7 +140,7 @@ class AnimeFave extends React.Component {
               <div
                 className="column"
                 className="Progress_rating"
-                style={{ paddingLeft: 20 }}
+                style={{ paddingLeft: 20,paddingTop:70 }}
               >
                 <h6>Rating</h6>
                 <StarRatingComponent
@@ -160,14 +160,14 @@ class AnimeFave extends React.Component {
                   } /* is component available for editing, default `true` */
                 />
 
-                <div className="ProgressBar" style={{ width: 200 }}>
+                <div className="ProgressBar" style={{ width: 300 }}>
                   <h5>Completion/episodes Watched:</h5>
                   <Progress percent={100} size="small" color="green" active>
                     {d.node.episodes}/{d.node.episodes}
                   </Progress>
                 </div>
 
-                <AnimeDescription>{d.node.description}</AnimeDescription>
+                <AnimeDescription>{d.node.description.replace(/(<([^>]+)>)/ig,"")}</AnimeDescription>
               </div>
             </div>
           </li>
@@ -180,7 +180,7 @@ class AnimeFave extends React.Component {
       <Layout user={user}>
         <div>
           <SectionTitle>
-            Total Anime watched: {this.state.statistics.count}
+            My Favourites
           </SectionTitle>
           <div>{animeFavs}</div>
         </div>
