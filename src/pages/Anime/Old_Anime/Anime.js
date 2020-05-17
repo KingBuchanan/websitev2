@@ -1,7 +1,7 @@
 import React from "react";
-import { SectionTitle } from "../../styles";
+import { SectionTitle } from "../../../styles";
 import { AnimeItem, AnimeName, AnimeDescription } from "./styles";
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import { Progress } from "semantic-ui-react";
 import StarRatingComponent from "react-star-rating-component";
 
