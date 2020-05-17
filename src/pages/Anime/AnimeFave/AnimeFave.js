@@ -1,7 +1,7 @@
 import React from 'react';
-import { SectionTitle, } from '../../styles';
+import { SectionTitle, } from '../../../styles';
 import {AnimeItem,AnimeName,AnimeDescription} from  './styles';
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 import { Progress, } from 'semantic-ui-react'
 import StarRatingComponent from 'react-star-rating-component';
 
@@ -26,7 +26,7 @@ var query=
               medium
               color
             }
-            description
+            description(asHtml: false)
             season
             genres
             meanScore
@@ -75,7 +75,7 @@ options = {
 
 
 
-class Anime extends React.Component {
+class AnimeFave extends React.Component {
   constructor(props) {
     super(props);
 
@@ -113,7 +113,7 @@ handleFetch(){
 handleError(error) {
   alert('Error, check console');
   console.log(this.state.edges)
-  console.log(typeof this.state.edges[0].node.coverImage.large)
+ //console.log(typeof this.state.edges[0].node.coverImage.large)
   console.log(this.state.statistics.count)
   console.log(this.state.statistics);
   console.error(error);
@@ -121,8 +121,7 @@ handleError(error) {
 
   handleData(data) {
     var animeData=data.data.User;
-    var mediaList=data.data.Page.mediaList;
-    console.log(mediaList);
+    console.log(animeData);
     this.setState({favourites:animeData.favourites.anime})
     this.setState({statistics:animeData.statistics.anime})
     this.setState({total_count:animeData.statistics.anime.count})
@@ -185,8 +184,7 @@ handleError(error) {
      {animeFavs}
      
     </div>
-    
-    <h2>  </h2>
+  
         </div>
         
         </Layout>
@@ -194,4 +192,4 @@ handleError(error) {
   }
 }
 
-export default Anime;
+export default AnimeFave;

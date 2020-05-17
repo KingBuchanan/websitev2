@@ -12,6 +12,10 @@ a {
   background-color: $ui-background;
 }
 
+.bx--side-nav__submenu-title{
+  color:white;
+}
+
 a.bx--side-nav__link--current,
 a.bx--side-nav__link--current > span.bx--side-nav__link-text {
   background-color: $ui-01;
