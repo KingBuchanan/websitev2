@@ -1,8 +1,7 @@
-@import '@carbon/themes/scss/themes';
+@import "@carbon/themes/scss/themes";
 $carbon--theme: $carbon--theme--g100;
 @include carbon--theme();
-
-@import 'carbon-components/scss/globals/scss/styles.scss';
+@import "carbon-components/scss/globals/scss/styles.scss";
 
 a {
   color: $text-04;
@@ -12,8 +11,8 @@ a {
   background-color: $ui-background;
 }
 
-.bx--side-nav__submenu-title{
-  color:white;
+.bx--side-nav__submenu-title {
+  color: white;
 }
 
 a.bx--side-nav__link--current,
@@ -28,18 +27,16 @@ a.bx--side-nav__link--current > span.bx--side-nav__link-text {
   color: $text-04;
 }
 
-a.bx--side-nav__link > .bx--side-nav__link-text,
-.bx--side-nav__item:not(.bx--side-nav__item--active)
+a.bx--side-nav__link > .bx--side-nav__link-text,.bx--side-nav__item:not(.bx--side-nav__item--active)
   > .bx--side-nav__link:hover
   > span {
   color: $text-04;
 }
 
 .column {
-  flex:30%
+  flex: 30%;
 }
 
 .row {
-  display: flex;
+  display:flex;
 }
-
