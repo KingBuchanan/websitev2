@@ -12,7 +12,7 @@ const Pages = ({ user }) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/websitev2">
+        <Route exact path="/me">
           <Me user={user} />
         </Route>
         <Route path="/projects">
