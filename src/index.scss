@@ -30,3 +30,12 @@ a.bx--side-nav__link > .bx--side-nav__link-text,
   > span {
   color: $text-04;
 }
+
+.column {
+  flex:30%
+}
+
+.row {
+  display: flex;
+}
+

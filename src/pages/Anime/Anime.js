@@ -46,6 +46,19 @@ var query=
       }
     }
   }
+  Page{
+    mediaList(userId:478182){
+      media {
+        id
+        title {
+          romaji
+          english
+          native
+          userPreferred
+        }
+      }
+    }
+    }
 }`
 var url = 'https://graphql.anilist.co',
 options = {
@@ -80,7 +93,7 @@ class Anime extends React.Component {
     this.handleResponse=this.handleResponse.bind(this);
   }
 
-componentWillMount(){
+componentDidMount(){
   this.handleFetch();
 }
 handleFetch(){
@@ -99,19 +112,22 @@ handleFetch(){
 
 handleError(error) {
   alert('Error, check console');
+  console.log(this.state.edges)
+  console.log(typeof this.state.edges[0].node.coverImage.large)
+  console.log(this.state.statistics.count)
+  console.log(this.state.statistics);
   console.error(error);
   }
 
   handleData(data) {
     var animeData=data.data.User;
+    var mediaList=data.data.Page.mediaList;
+    console.log(mediaList);
     this.setState({favourites:animeData.favourites.anime})
     this.setState({statistics:animeData.statistics.anime})
     this.setState({total_count:animeData.statistics.anime.count})
     this.setState({edges:animeData.favourites.anime.edges})
-    console.log(this.state.edges)
-    console.log(typeof this.state.edges[0].node.coverImage.large)
-    console.log(this.state.statistics.count)
-    console.log(this.state.statistics);
+    
    
  
  }
@@ -119,17 +135,21 @@ handleError(error) {
   render() {
     const {user} = this.props;
     const animeData=this.state.edges
-    const animeFavs=animeData.map((d)=> <ul><AnimeItem><li key={d}>
+    const animeFavs=animeData.map((d)=> 
+    
+    <ul key={d.node.title.english}><AnimeItem><li key={d}>
      
-        <div>
+        <div className="row">
+        <div className="column">
         <AnimeName>{d.node.title.english}</AnimeName>
-       <AnimeName>{d.node.title.native}</AnimeName>
-       
-       
-       <div className="Stars" margin-left="15px">
+        <AnimeName>{d.node.title.native}</AnimeName>
+        <img src={d.node.coverImage.large} alt="Anime Cover Images"></img>
+       </div>
+      
+       <div className="column" className="Progress_rating" style={{paddingLeft:20}}>
          
          <h6>Rating</h6>
-         <StarRatingComponent 
+    <StarRatingComponent 
     name={"String"} /* name of the radio input, it is required */
     value={Math.round((d.node.meanScore/100)*5)} /* number of selected icon (`0` - none, `1` - first) */
     starCount={5} /* number of icons in rating, default `5` */
@@ -137,17 +157,18 @@ handleError(error) {
     emptyStarColor={"#FFFFFF"} /* color of non-selected icons, default `#333` */
     editing={false} /* is component available for editing, default `true` */
 />
-</div>
-<div className="ProgressBar">
+
+<div className="ProgressBar" style={{width:200}}>
   <h5>Completion/episodes Watched:</h5>
   <Progress percent={100} size="small" color="green" active >
       {d.node.episodes}/{d.node.episodes}
     </Progress>
 </div>
-</div>
-     
-       <img src={d.node.coverImage.large} alt="Anime Cover Images"></img>
+
+       
        <AnimeDescription>{d.node.description}</AnimeDescription>
+       </div>
+       </div>
         </li>
         </AnimeItem></ul>);
 
