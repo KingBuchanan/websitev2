@@ -143,7 +143,7 @@ class AnimeCurrent extends React.Component {
            <Layout user={user}>
 <div>
 <SectionTitle>
-            Currently Watching:
+            Currently Watching: {this.state.mediaList.length}
           </SectionTitle>
                {AnimeList}
                </div>

@@ -7,6 +7,7 @@ import Education from './Education';
 import AnimeFave from './Anime/AnimeFave';
 import AnimeCurrent from  './Anime/AnimeCurrent';
 import AnimeComplete from './Anime/AnimeComplete';
+import Contact from './ContactMe';
 
 const Pages = ({ user }) => {
   return (
@@ -32,6 +33,9 @@ const Pages = ({ user }) => {
         </Route>
         <Route path="/anime/completed">
           <AnimeComplete user={user} />
+        </Route>
+        <Route path="/contactme">
+          <Contact user={user} />
         </Route>
       </Switch>
     </Router>
