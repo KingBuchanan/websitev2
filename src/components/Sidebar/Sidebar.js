@@ -5,11 +5,12 @@ import { SideNavItems, SideNavLink, SideNavMenu, SideNavMenuItem } from 'carbon-
 import { StyledSideNav } from './styles';
 
 const items = [
-  { name: 'Me', path: '/websitev2' },
+  { name: 'Me', path: '/' },
   { name: 'Projects', path: '/projects' },
   { name: 'Work', path: '/work' },
   { name: 'Education', path: '/education' },
   {name:'Contact',path:'/contactme'},
+  {name:'Blog',path:'/blog'},
   
 ];
 
