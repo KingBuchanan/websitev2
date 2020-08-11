@@ -6,23 +6,33 @@ export default class Contact extends React.Component {
     super(props);
     this.submitForm = this.submitForm.bind(this);
     this.state = {
-      status: ""
+      status: "",
+      scriptLoaded:true,
+      scriptError:false,
+
     };
   }
 
   render() {
     const { status } = this.state;
     const {user}=this.props;
+    
     return (
         <Layout user={user}>
-          <div>
+          
+          <div> 
+          
           <h4>Contact Me</h4>
+        
+          
             <form
         onSubmit={this.submitForm}
         action="https://formspree.io/xgenozay"
         method="POST"
       >
         <div className="Email" style={{paddingTop:10,paddingBottom:10}}>
+       
+        
         <label htmlFor="email">Email: </label>
         <input id="email" type="email" name="email" required/>
         </div>
@@ -35,10 +45,24 @@ export default class Contact extends React.Component {
       </form>
 
       </div>
+      
       </Layout>
     );
     
   }
+  
+handleScriptCreate() {
+  this.setState({ scriptLoaded: false })
+}
+
+handleScriptError() {
+  this.setState({ scriptError: true })
+}
+
+handleScriptLoad() {
+  this.setState({ scriptLoaded: true })
+ return
+}
 
   submitForm(ev) {
     ev.preventDefault();

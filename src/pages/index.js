@@ -9,6 +9,7 @@ import AnimeCurrent from  './Anime/AnimeCurrent';
 import AnimeComplete from './Anime/AnimeComplete';
 import Contact from './ContactMe';
 import Blog from './Blog';
+import BlogPost from './Blog/Blog_Posts';
 
 const Pages = ({ user }) => {
   return (
@@ -41,6 +42,10 @@ const Pages = ({ user }) => {
         <Route exact path="/blog">
           <Blog user={user} />
         </Route>
+        <Route path='/blog/:page' exact component={Blog} user={user}/>
+        <Route path='/blog/posts/:post' component={BlogPost}>
+           
+          </Route>
       </Switch>
     </Router>
   );
