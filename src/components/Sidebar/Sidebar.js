@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { SideNavItems, SideNavLink } from 'carbon-components-react/lib/components/UIShell';
+import { SideNavItems, SideNavLink, SideNavMenu, SideNavMenuItem } from 'carbon-components-react/lib/components/UIShell';
 
 import { StyledSideNav } from './styles';
 
 const items = [
-  { name: 'Me', path: '/websitev2' },
+  { name: 'Me', path: '/' },
   { name: 'Projects', path: '/projects' },
   { name: 'Work', path: '/work' },
   { name: 'Education', path: '/education' },
-  { name: 'Anime', path: '/anime' }
+  {name:'Contact',path:'/contactme'},
+  {name:'Blog',path:'/blog'},
+  
 ];
 
 const Sidebar = () => {
@@ -29,7 +31,19 @@ const Sidebar = () => {
           >
             {i.name}
           </SideNavLink>
+          
         ))}
+        <SideNavMenu title="Anime" >
+          <SideNavMenuItem element={Link} to={'/anime/watching'} key={'Watching'}>
+            Watching
+          </SideNavMenuItem>
+          <SideNavMenuItem element={Link} to={'/anime/favorites'} key={'Favorites'}href="/favorites">
+            Favorites
+          </SideNavMenuItem>
+          <SideNavMenuItem element={Link} to={'/anime/completed'} key={'Completed'}href="/completed">
+            Completed
+          </SideNavMenuItem>
+        </SideNavMenu>
       </SideNavItems>
     </StyledSideNav>
   );
