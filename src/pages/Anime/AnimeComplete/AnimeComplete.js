@@ -1,61 +1,72 @@
 import React from "react";
 import { SectionTitle } from "../../../styles";
-import { AnimeItem, AnimeName, AnimeDescription } from "./styles";
+import { AnimeItem, AnimeName, AnimeDescription,} from "./styles";
 import Layout from "../../../components/Layout";
-import { Progress } from "semantic-ui-react";
+import { Progress,Pagination  } from "semantic-ui-react";
 import StarRatingComponent from "react-star-rating-component";
-import {GraphQLCLient, gql} from 'graphql-request'
+import ReactPaginate from 'react-paginate';
 
-var pageNum=1;
-var query = `{
-    Page{
-        mediaList(userId:478182,status:COMPLETED){
-        progress
-        score
-          media {
-            id
-            title {
-              romaji
-              english
-              native
-              userPreferred
-            }
-            coverImage {
-              extraLarge
-              large
-              medium
-              color
-            }
-            mediaListEntry{
-                score
-            }
-            meanScore
-            episodes
-            description(asHtml: false)
+var query = `query ($page: Int, $perPage: Int){
+  Page(page:$page,perPage:$perPage){
+      mediaList(userId:478182,status:COMPLETED,sort:MEDIA_TITLE_ENGLISH){
+      progress
+      score
+        media {
+          id
+          title {
+            romaji
+            english
+            native
+            userPreferred
           }
+          coverImage {
+            extraLarge
+            large
+            medium
+            color
+          }
+          mediaListEntry{
+              score
+          }
+          meanScore
+          episodes
+          description(asHtml: false)
         }
-        }
-        User(id: 478182) {
-          statistics {
-            anime {
-              episodesWatched
+      }
+      }
+      User(id: 478182) {
+        statistics {
+          anime {
+            episodesWatched
+            count
+            genres {
+              genre
               count
-              genres {
-                genre
-                count
-                minutesWatched
-              }
+              minutesWatched
             }
           }
         }
-        
+      }
+     
 }`;
-const endpoint = 'https://graphql.anilist.co'
 
-const graphQLClient = new GraphQLClient(endpoint, {
-  credentials: 'include',
-  mode: 'cors',
-})
+var variables = {
+  page: 1,
+  perPage: 200,
+};
+
+var url = "https://graphql.anilist.co",
+  options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      query: query,
+      variables: variables,
+    }),
+  };
 
 class AnimeComplete extends React.Component {
   constructor(props) {
@@ -64,139 +75,26 @@ class AnimeComplete extends React.Component {
     this.state = {
       mediaList: [],
       stats: [],
+      page:variables.page,
+      pageCount:0 ,
     };
     this.handleData = this.handleData.bind(this);
     this.handleFetch = this.handleFetch.bind(this);
     this.handleError = this.handleError.bind(this);
     this.handleResponse = this.handleResponse.bind(this);
-    this.sendQuery=this.sendQuery.bind(this);
-    this.handlePageNum=this.handlePageNum.bind(this);
+    this.handlePageClick=this.handlePageClick.bind(this);
   }
 
-
-  componentDidMount() {
+  componentWillMount() {
     this.handleFetch();
   }
 
-  sendQuery(variable){
-    const query = gql`{
-      Page($page){
-          mediaList(userId:478182,status:COMPLETED){
-          progress
-          score
-            media {
-              id
-              title {
-                romaji
-                english
-                native
-                userPreferred
-              }
-              coverImage {
-                extraLarge
-                large
-                medium
-                color
-              }
-              mediaListEntry{
-                  score
-              }
-              meanScore
-              episodes
-              description(asHtml: false)
-            }
-          }
-          }
-          User(id: 478182) {
-            statistics {
-              anime {
-                episodesWatched
-                count
-                genres {
-                  genre
-                  count
-                  minutesWatched
-                }
-              }
-            }
-          }
-          
-  }`;
-  
-    const data = await graphQLClient.request(query, variables)
-    .then(this.handleResponse)
-    .then(this.handleData)
-    .catch(this.handleError);
-    return data
-  }
-
-  handlePageNum(pageNum){
-
-    const variables={
-      page:pageNum
-    }
-
-  }
-
   handleFetch() {
-    const query = gql`{
-      Page{
-          mediaList(userId:478182,status:COMPLETED){
-          progress
-          score
-            media {
-              id
-              title {
-                romaji
-                english
-                native
-                userPreferred
-              }
-              coverImage {
-                extraLarge
-                large
-                medium
-                color
-              }
-              mediaListEntry{
-                  score
-              }
-              meanScore
-              episodes
-              description(asHtml: false)
-            }
-          }
-          }
-          User(id: 478182) {
-            statistics {
-              anime {
-                episodesWatched
-                count
-                genres {
-                  genre
-                  count
-                  minutesWatched
-                }
-              }
-            }
-          }
-          
-  }`;
-    const data = await graphQLClient.request(query, variables)
+    fetch(url, options)
       .then(this.handleResponse)
       .then(this.handleData)
       .catch(this.handleError);
-
-      return data;
   }
-
-
-  // handleFetch() {
-  //   fetch(url, options)
-  //     .then(this.handleResponse)
-  //     .then(this.handleData)
-  //     .catch(this.handleError);
-  // }
 
   handleResponse(response) {
     return response.json().then(function (json) {
@@ -206,24 +104,38 @@ class AnimeComplete extends React.Component {
 
   handleError(error) {
     alert("Error, check console");
-    console.error(error);
+    console.error(error.message);
+    console.error(error.message);
   }
 
   handleData(data) {
     var AnimeList = data.data.Page.mediaList;
     var User_Stats = data.data.User.statistics.anime;
+    var animeCount= User_Stats.count;
+    var totalPages=Math.round((animeCount)/variables.perPage);
+
     this.setState({ mediaList: AnimeList });
     this.setState({ stats: User_Stats });
+    this.setState({pageCount:totalPages})
+
+    
+    console.log(this.state.pageCount)
     console.log(this.state);
     console.log(User_Stats);
   }
 
+   handlePageClick =(e,{activePage}) =>{
+    variables.page=activePage;
+    this.setState({page:variables.page});
+    
+  }
   render() {
     const { user } = this.props;
     const anime = this.state.mediaList;
-    const AnimeList = anime.map((d) => (   
-      <ul key={d.media.title.english}> 
-      {/* Add the object for an anime */}
+    
+    const AnimeList = anime.map((d) => (
+      <ul key={d.media.title.english}>
+        {/* Add the object for an anime */}
         <AnimeItem>
           <div className="row">
             <div className="column">
@@ -287,6 +199,8 @@ class AnimeComplete extends React.Component {
           </SectionTitle>
         </div>
         {AnimeList}
+        <Pagination onPageChange={this.handlePageClick} totalPages={this.state.pageCount} />
+        
       </Layout>
     );
   }

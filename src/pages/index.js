@@ -11,6 +11,7 @@ import Contact from './ContactMe';
 import Blog from './Blog';
 import BlogPost from './Blog/Blog_Posts';
 
+
 const Pages = ({ user }) => {
   return (
     <Router>
